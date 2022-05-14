@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import Info from './components/Info';
+import React from 'react'
+
+class App extends React.Component {
+  
+  render(){
+    const {min_type, max_type} = this.props;
+
+    return (
+      <div className='app'>
+        <Info 
+          minT={min_type}
+          maxT={max_type}/>
+      </div>
+    )
+  }
 }
 
 export default App;
