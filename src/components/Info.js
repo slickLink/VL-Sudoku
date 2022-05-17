@@ -1,38 +1,36 @@
-import { useState } from "react";
+// components imports
 import Game from './Game';
+import Controls from "./Controls";
+// contenxt imports 
+import { useGame } from "../context/game";
 
-const Info = ({minT, maxT}) => {
-    let [game_type, setGameType] = useState(minT);
-    
-    
-    const handleGameType = (event) => {
-        const new_game_type = event.target.value;
-        setGameType(prevState => new_game_type);
+const Info = () => {
+    // get current game state & dispatch function
+    const [game, dispatchGame] = useGame();
+
+    //set game type
+    function handleTypeChange(event) {
+        dispatchGame({
+            type: 'SET_GAME_TYPE',
+            game_type: parseInt(event.target.value)
+        });
     }
-
-    //calculate game position
-    let game_width = 9 * (game_type / 3);
-    let game_margin = 9 / (game_type / 3) - 3;
     
     return (
         <>
-            <div className='info'
-                style={{
-                    width: `${game_width}rem`,
-                    margin: `0rem ${game_margin}rem`}}>
-                <label className='info-label'>Type:</label>
-                <p>{game_type}</p>
+            <div className='info'>
+                <label className='info-label'>Type: {game.type}</label>
                 <input 
                 className='info-type'
                 type='range' 
-                min={minT} 
-                max={maxT} 
+                min={game.min_type} 
+                max={game.max_type} 
                 step={1}
-                value={game_type}
-                onChange={handleGameType}/>
+                value={game.type}
+                onChange={handleTypeChange}/>
             </div>
-            <Game 
-                game_type={game_type}/>
+            <Game />
+            <Controls />
         </>
     );
 }

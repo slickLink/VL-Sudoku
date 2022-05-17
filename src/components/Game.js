@@ -1,26 +1,28 @@
 import GameSquare from "./GameSquare";
+import { useGame } from "../context/game";
 
-const Game = ({game_type}) => {
+const Game = () => {
+    const [game] = useGame();
+
     
     // create Game Squares
-    const num_of_squares = game_type * game_type;
-    let game_squares = []
+    const num_of_squares = game.type * game.type;
+    const activeSquare = game.active;
     //build the array of game squares
+    let game_squares = []
     for (let i = 0; i < num_of_squares; i++) {
-        game_squares.push(<GameSquare key={i.toString()}/>)
+        game_squares.push(<GameSquare 
+                                key={i.toString()} 
+                                game_type={game.type}
+                                active={ i === activeSquare ? 'active': undefined}
+                                subactive={ game.subactive.includes(i) ? 'subactive': undefined}
+                                position={i}/>)
     }
 
-    //calculate game position
-    let game_width = 9 * (game_type / 3);
-    let game_margin = 9 / (game_type / 3) - 3;
     return (
         <div className="game"
-            style={{
-                width: `${game_width}rem`,
-                margin: `0rem ${game_margin}rem`}}>
-            
+            style={{ width: `${game.width}rem` }}>
             {game_squares}
-            {/* <Controls /> */}
         </div>
     )
 }
