@@ -4,6 +4,11 @@ import Controls from "./Controls";
 // contenxt imports 
 import { useGame } from "../context/game";
 
+/*
+  Info: gives the user the ability to change the 
+  type of sudoku game (3,4,5,6,7,8,9)
+  
+*/
 const Info = () => {
     // get current game state & dispatch function
     const [game, dispatchGame] = useGame();

@@ -1,10 +1,14 @@
 import GameSquare from "./GameSquare";
 import { useGame } from "../context/game";
 
+/*
+  Game: is a resizable container that holds the game board
+  resizing is dependent of the type of sudoku game (3,4,5,6,7,8,9).
+  Game will generate the board (GameSquares) depending on the game type
+*/
 const Game = () => {
     const [game] = useGame();
 
-    
     // create Game Squares
     const num_of_squares = game.type * game.type;
     const activeSquare = game.active;

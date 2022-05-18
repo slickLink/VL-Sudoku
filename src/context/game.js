@@ -9,7 +9,7 @@ const MAX_TYPE = 9;
 // used for creating an entry point to use the provider (Context)
 const gameContext = createContext();
 
-//game reducer function
+//game reducer function, handles all game state actions
 const gameReducer = (state, action) => {
     switch (action.type) {
         case 'SET_GAME_TYPE':

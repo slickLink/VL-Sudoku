@@ -4,6 +4,10 @@ import Info from './components/Info';
 import React from 'react';
 import { useGame } from './context/game';
 
+/*
+  App: is a resizable container that holds the entire app
+  resizing is dependent of the type of sudoku game (3,4,5,6,7,8,9)
+*/
 function App(props) {
   //get current game state
   const [game] = useGame();

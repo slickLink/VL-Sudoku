@@ -1,9 +1,12 @@
 
-const DigitButton = ({num}) => {
+/*
+  Controls: renders a button control for user given a value
+*/
+const ControlDigitButton = ({num}) => {
 
     return (
         <button className="controldigitButton">{num}</button>
     )
 }
 
-export default DigitButton;
+export default ControlDigitButton;
