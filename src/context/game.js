@@ -1,4 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
+import {getSubactive} from "../gameUtil";
 
 // variables
 const MIN_TYPE = 3;
@@ -16,11 +17,15 @@ const gameReducer = (state, action) => {
             return {...state,
                 type: action.game_type,
                 width: MIN_TYPE * (action.game_type), // calculates css attribute
-                margin: MAX_TYPE / (action.game_type) // calculates css attribute
+                margin: MAX_TYPE / (action.game_type), // calculates css attribute
+                active: undefined,
+                subactive: []
+
             }
         case 'SET_ACTIVE_SQUARE':
             return {...state,
-                active: action.active
+                active: action.active,
+                subactive: getSubactive(action.active, state.type)
             }
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
