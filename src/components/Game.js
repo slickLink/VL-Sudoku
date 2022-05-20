@@ -1,6 +1,6 @@
 import GameSquare from "./GameSquare";
 import { useGame } from "../context/game";
-import { generateGame } from "../gameUtil";
+import { generateGame, getRandomSequenceClues} from "../gameUtil";
 /*
   Game: is a resizable container that holds the game board
   resizing is dependent of the type of sudoku game (3,4,5,6,7,8,9).
@@ -10,6 +10,9 @@ const Game = () => {
 
     const [game] = useGame();
 
+    // retrieve clue indexes
+    const clues = getRandomSequenceClues(game.num_clues, game.type * game.type);
+
     // create Game Squares
     // const num_of_squares = game.type * game.type;
     const activeSquare = game.active;
@@ -17,7 +20,6 @@ const Game = () => {
     // turn 2D array table to 1D array
     let game_squares = generateGame(game.type).flat();
     //build the array of game squares
-
     game_squares = game_squares.map((value, i) => (
         <GameSquare 
             key={i.toString()} 
@@ -25,7 +27,8 @@ const Game = () => {
             active={ i === activeSquare ? 'active': undefined}
             subactive={ game.subactive.includes(i) ? 'subactive': undefined}
             position={i}
-            value={value}/>
+            value={game.type_array[value - 1]} /* randomizes balanced latin square values */
+            isClue={ clues.includes(i) ? true : false}/>
     ));
 
     return (

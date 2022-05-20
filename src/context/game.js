@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import {getSubactive} from "../gameUtil";
+import {getSubactive, getRandomSequence} from "../gameUtil";
 
 // variables
 const MIN_TYPE = 3;
@@ -16,11 +16,12 @@ const gameReducer = (state, action) => {
         case 'SET_GAME_TYPE':
             return {...state,
                 type: action.game_type,
+                type_array: getRandomSequence(action.game_type),
                 width: MIN_TYPE * (action.game_type), // calculates css attribute
                 margin: MAX_TYPE / (action.game_type), // calculates css attribute
                 active: undefined,
-                subactive: []
-
+                subactive: [],
+                num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE // calculates num of clues for type of board
             }
         case 'SET_ACTIVE_SQUARE':
             return {...state,
@@ -38,10 +39,12 @@ const GameProvider = (props) => {
         min_type: MIN_TYPE,
         max_type: MAX_TYPE,
         type: MIN_TYPE,
+        type_array: getRandomSequence(MIN_TYPE),
         width: MAX_TYPE,
         margin: MAX_TYPE,
         active: undefined,
-        subactive:[]
+        subactive:[],
+        num_clues: MIN_TYPE + MIN_TYPE // 6
     });
 
     // values that will be passed to wrapped components via GameContext.Provider to children

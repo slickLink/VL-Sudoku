@@ -5,7 +5,7 @@ import { useGame } from "../context/game";
   each GameSquare has the ability to be set active (blue), subactive(grey) or non-active (white).
   These squares are either mutable or immuatable once rendered
 */
-const GameSquare = ({game_type, active, subactive, position, value}) => {
+const GameSquare = ({game_type, active, subactive, position, value, isClue}) => {
     // retrieve game state
     const [, dispatchGame] = useGame();
 
@@ -21,7 +21,7 @@ const GameSquare = ({game_type, active, subactive, position, value}) => {
         <button 
             className={`gameSquare ${active} ${subactive}`}
             style={{width: `calc(100% / ${game_type})`}}
-            onClick={setActive}>{value}</button>
+            onClick={setActive}>{ isClue && value}</button>
     )
 }
 

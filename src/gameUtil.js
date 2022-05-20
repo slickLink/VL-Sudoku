@@ -38,7 +38,7 @@ const getSubactive = (activeIndex, game_type) => {
             let subactive = game_board[row][column];
             arr_sub.push(subactive);
         } catch (error) {
-            console.log('invalid index');
+            // console.log('invalid index');
         }
     }
 
@@ -52,7 +52,7 @@ const getSubactive = (activeIndex, game_type) => {
             let subactive = game_board[row][column];
             arr_sub.push(subactive);
         } catch (error) {
-            console.log('invalid index');
+            // console.log('invalid index');
         }
     }
 
@@ -66,7 +66,7 @@ const getSubactive = (activeIndex, game_type) => {
             let subactive = game_board[row][column];
             arr_sub.push(subactive);
         } catch (error) {
-            console.log('invalid index');
+            // console.log('invalid index');
         }
     }
 
@@ -80,7 +80,7 @@ const getSubactive = (activeIndex, game_type) => {
             let subactive = game_board[row][column];
             arr_sub.push(subactive);
         } catch (error) {
-            console.log('invalid index');
+            // console.log('invalid index');
         }
     }
     // fitler undefined out of subactive indexes
@@ -134,4 +134,50 @@ const generateGame = (game_type) => {
     return table;
 }
 
-export  {getSubactive, generateGame};
+/*
+    getRandomSequence: function returns an array of random sequence of numbers
+    from 1 - game_type of length game_type
+
+*/
+const getRandomSequence = (game_type) => {
+    //create array of length game_type initialized 1 - game_type
+    let ordinal_array = []
+    for(let i = 1; i <= game_type; i++) {
+        ordinal_array.push(i);
+    }
+
+    // create random sequence array of the ordinal array elements
+    let random_array = []
+    for(let i = 0; i <game_type; i++) {
+        //get random digit
+        const random_index = Math.floor(Math.random() * ordinal_array.length);
+        let random_digit = ordinal_array[random_index]
+        random_array.push(random_digit);
+        //remove the random digit from ordinal_array
+        ordinal_array.splice(random_index, 1);
+    }
+    
+    return random_array;
+}
+
+const getRandomSequenceClues = (num_clues, total_indexes) => {
+    // create ordinal array starting with 0
+    let ordinal_array = [];
+    for(let i = 0; i < total_indexes; i++) {
+        ordinal_array.push(i);
+    }
+
+    // create random indexes of clues from ordinal array
+    let clues = [];
+    for(let i = 0; i < num_clues; i++) {
+        const random_index = Math.floor(Math.random() * ordinal_array.length);
+        let random_clue = ordinal_array[random_index];
+        clues.push(random_clue);
+        // remove pushed clue from ordinal array
+        ordinal_array.splice(random_index, 1);
+    }
+
+    return clues;
+}
+
+export  {getSubactive, generateGame, getRandomSequence, getRandomSequenceClues};
