@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGame } from "../context/game";
 
 /*
@@ -8,6 +9,10 @@ import { useGame } from "../context/game";
 const GameSquare = ({game_type, active, subactive, position, value, isClue}) => {
     // retrieve game state
     const [, dispatchGame] = useGame();
+    // set internal state
+    //if square is a clue then don't show value
+    // i know this is a bit confusing but the game is more fun this way trust me
+    const [display_value, setDisplay_value] = useState(isClue ? ' ': value);
 
     //set active Gamesquare
     const setActive = () => {
@@ -21,7 +26,9 @@ const GameSquare = ({game_type, active, subactive, position, value, isClue}) => 
         <button 
             className={`gameSquare ${active} ${subactive}`}
             style={{width: `calc(100% / ${game_type})`}}
-            onClick={setActive}>{ isClue && value}</button>
+            onClick={setActive}>
+                {display_value}
+        </button>
     )
 }
 
