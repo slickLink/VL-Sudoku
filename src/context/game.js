@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import {getSubactive, getRandomSequence} from "../gameUtil";
+import {getSubactive, getRandomSequence, getRandomSequenceClues} from "../gameUtil";
 
 // variables
 const MIN_TYPE = 3;
@@ -20,13 +20,19 @@ const gameReducer = (state, action) => {
                 width: MIN_TYPE * (action.game_type), // calculates css attribute
                 margin: MAX_TYPE / (action.game_type), // calculates css attribute
                 active: undefined,
+                
                 subactive: [],
-                num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE // calculates num of clues for type of board
+                num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, // calculates num of clues for type of board
+                clues: getRandomSequenceClues(Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, action.game_type * action.game_type)
             }
         case 'SET_ACTIVE_SQUARE':
             return {...state,
                 active: action.active,
                 subactive: getSubactive(action.active, state.type)
+            }
+        case 'SET_ACTIVE_VALUE':
+            return {...state,
+                active_value: action.value
             }
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
@@ -43,8 +49,9 @@ const GameProvider = (props) => {
         width: MAX_TYPE,
         margin: MAX_TYPE,
         active: undefined,
+        active_value: undefined,
         subactive:[],
-        num_clues: MIN_TYPE + MIN_TYPE // 6
+        clues: getRandomSequenceClues(Math.ceil((MIN_TYPE * MIN_TYPE) / MIN_TYPE) + MIN_TYPE, MIN_TYPE * MIN_TYPE) // 6
     });
 
     // values that will be passed to wrapped components via GameContext.Provider to children
