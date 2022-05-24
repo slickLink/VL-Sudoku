@@ -31,6 +31,10 @@
   outline: 1px inset rgb(196, 196, 196);
 }
 
+.wrong {
+  color: red;
+}
+
 .active {
   background-color:rgb(145, 196, 254)
 }
