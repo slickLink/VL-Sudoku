@@ -146,18 +146,19 @@ const getRandomSequence = (game_type) => {
         ordinal_array.push(i);
     }
 
+    return ordinal_array;
     // create random sequence array of the ordinal array elements
-    let random_array = []
-    for(let i = 0; i <game_type; i++) {
-        //get random digit
-        const random_index = Math.floor(Math.random() * ordinal_array.length);
-        let random_digit = ordinal_array[random_index]
-        random_array.push(random_digit);
-        //remove the random digit from ordinal_array
-        ordinal_array.splice(random_index, 1);
-    }
+    // let random_array = []
+    // for(let i = 0; i <game_type; i++) {
+    //     //get random digit
+    //     const random_index = Math.floor(Math.random() * ordinal_array.length);
+    //     let random_digit = ordinal_array[random_index]
+    //     random_array.push(random_digit);
+    //     //remove the random digit from ordinal_array
+    //     ordinal_array.splice(random_index, 1);
+    // }
     
-    return random_array;
+    // return random_array;
 }
 
 const getRandomSequenceClues = (num_clues, total_indexes) => {
