@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import {getSubactive, getRandomSequence, getRandomSequenceClues} from "../gameUtil";
+import {getSubactive, getRandomSequence, getRandomSequenceClues, generateGame} from "../gameUtil";
 
 // variables
 const MIN_TYPE = 3;
@@ -9,6 +9,7 @@ const MAX_TYPE = 9;
 
 // used for creating an entry point to use the provider (Context)
 const gameContext = createContext();
+gameContext.displayName = 'GameContext';
 
 //game reducer function, handles all game state actions
 const gameReducer = (state, action) => {
@@ -20,10 +21,10 @@ const gameReducer = (state, action) => {
                 width: MIN_TYPE * (action.game_type), // calculates css attribute
                 margin: MAX_TYPE / (action.game_type), // calculates css attribute
                 active: undefined,
-                
                 subactive: [],
-                num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, // calculates num of clues for type of board
-                clues: getRandomSequenceClues(Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, action.game_type * action.game_type)
+                num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, // calculates num of mutable squares
+                immutable_squares: getRandomSequenceClues(Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, action.game_type * action.game_type),
+                game_squares: generateGame(action.game_type).flat()
             }
         case 'SET_ACTIVE_SQUARE':
             return {...state,
@@ -51,7 +52,8 @@ const GameProvider = (props) => {
         active: undefined,
         active_value: undefined,
         subactive:[],
-        clues: getRandomSequenceClues(Math.ceil((MIN_TYPE * MIN_TYPE) / MIN_TYPE) + MIN_TYPE, MIN_TYPE * MIN_TYPE) // 6
+        immutable_squares: getRandomSequenceClues(Math.ceil((MIN_TYPE * MIN_TYPE) / MIN_TYPE) + MIN_TYPE, MIN_TYPE * MIN_TYPE), // 6
+        game_squares: generateGame(MIN_TYPE).flat() // generateGame returns a 2D table
     });
 
     // values that will be passed to wrapped components via GameContext.Provider to children

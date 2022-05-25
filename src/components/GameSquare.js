@@ -6,54 +6,65 @@ import { useGame } from "../context/game";
   each GameSquare has the ability to be set active (blue), subactive(grey) or non-active (white).
   These squares are either mutable or immuatable once rendered
 */
-const GameSquare = ({game_type, active, subactive, position, value, isClue}) => {
+const GameSquare = ({active, subactive, position, isImmuatable, value}) => {
     // retrieve game state
     const [game , dispatchGame] = useGame();
-    // set internal state
-    //if square is a clue then don't show value
-    // i know this is a bit confusing but the game is more fun this way trust me
-    const default_value = isClue ? ' ' : value;
-    const [display_value, setDisplay_value] = useState(default_value);
-    const [error, setError] = useState(undefined)
 
     //set active Gamesquare
-    const setActive = () => {
+    const toggleActive = () => {
+        // tell game which square is active or not 
         dispatchGame({
             type: 'SET_ACTIVE_SQUARE',
-            active: position
-        })
+            active: !active ? position : undefined
+        });
     }
 
+
     //listens for active value changes
-    useEffect(() => {
-        /*
-            set display value only if 
-            1) game.active_value is set
-            2) GameSquare is active
-            3) GameSquare is a clue
-        */
-        if (game.active_value && active && isClue ) {
-            setDisplay_value(game.active_value);
-            // if user input is incorrect show error
-            if (game.active_value !== value) {
-                setError('wrong')
-            } else {
-                setError(undefined);
-            }
-        } else {
-            dispatchGame({
-                type: 'SET_ACTIVE_VALUE',
-                value: undefined
-            });
-        }
-    }, [game.active_value, active, isClue, dispatchGame, value]);
+    // useEffect(() => {
+    //     /*
+    //         set display value only if 
+    //         1) game.active_value is set
+    //         2) GameSquare is active
+    //         3) GameSquare is a clue
+    //     */
+    //     if (game.active_value && is_active && isMutable ) {
+    //         setDisplay_value(game.active_value);
+    //         // if user input is incorrect show error
+    //         if (game.active_value !== value) {
+    //             setError('wrong')
+    //         } else {
+    //             setError(undefined);
+    //         }
+    //     } else {
+    //         dispatchGame({
+    //             type: 'SET_ACTIVE_VALUE',
+    //             value: undefined
+    //         });
+    //     }
+
+    //     // if value changes and gamesquare is immutable then change display value
+    //     if (value !== display_value && isMutable === false) {
+    //         setDisplay_value(value);
+    //     }
+    // }, [game.active_value, is_active, isMutable, dispatchGame, value, display_value]);
+    /* listen for (prop) value changes
+        if prop value changes, this is a new GameSquare
+    */
+
+    // listen for changes in active index (only one active GameSquare at a time)
+    // useEffect(() => {
+    //     if (game.active !== position) {
+    //         setIs_Active(undefined);
+    //     }
+    // },[game.active, position])
 
     return (
         <button 
-            className={`gameSquare ${active} ${subactive} ${error}`}
-            style={{width: `calc(100% / ${game_type})`}}
-            onClick={setActive}>
-                {display_value}
+            className={`gameSquare ${active} ${subactive} `}
+            style={{width: `calc(100% / ${game.type})`}}
+            onClick={toggleActive}>
+                {value}
         </button>
     )
 }
