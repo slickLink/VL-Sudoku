@@ -40,22 +40,29 @@ const gameReducer = (state, action) => {
     }
 }
 
-// game provider holds data about the current game state
+// game provider holds data about the initial/current game state
 const GameProvider = (props) => {
+    // get ordinal array of game_type, 3 => [1,2,3]
+    const type_array = getRandomSequence(MIN_TYPE);
+    // get balanced latin square indexes for type_array & map actual game values
+    let game_square_indexes = generateGame(MIN_TYPE).flat()
+    const game_square_values = game_square_indexes.map((value) => type_array[value - 1])
+    // set inital state
     const [game, dispatch] = useReducer(gameReducer, {
         min_type: MIN_TYPE,
         max_type: MAX_TYPE,
         type: MIN_TYPE,
-        type_array: getRandomSequence(MIN_TYPE),
+        type_array: type_array,
         width: MAX_TYPE,
         margin: MAX_TYPE,
         active: undefined,
         active_value: undefined,
         subactive:[],
         immutable_squares: getRandomSequenceClues(Math.ceil((MIN_TYPE * MIN_TYPE) / MIN_TYPE) + MIN_TYPE, MIN_TYPE * MIN_TYPE), // 6
-        game_squares: generateGame(MIN_TYPE).flat() // generateGame returns a 2D table
+        game_squares: game_square_values // generateGame returns a 2D table
     });
 
+    
     // values that will be passed to wrapped components via GameContext.Provider to children
     const value = [game, dispatch];
     return (
