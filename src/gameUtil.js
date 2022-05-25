@@ -5,8 +5,8 @@
 */
 
 const getSubactive = (activeIndex, game_type) => {
-    // handle undefined index
-    if (activeIndex === undefined) {
+    // handle null index
+    if (activeIndex == null) {
         return [];
     }
     //create 2D representaion of gameboard
