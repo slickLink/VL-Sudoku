@@ -6,16 +6,17 @@ import { useGame } from "../context/game";
   each GameSquare has the ability to be set active (blue), subactive(grey) or non-active (white).
   These squares are either mutable or immuatable once rendered
 */
-const GameSquare = ({active, subactive, position, isImmuatable, value}) => {
+const GameSquare = ({active, subactive, position, value}) => {
     // retrieve game state
     const [game , dispatchGame] = useGame();
+
 
     //set active Gamesquare
     const toggleActive = () => {
         // tell game which square is active or not 
         dispatchGame({
             type: 'SET_ACTIVE_SQUARE',
-            active: !active ? position : undefined
+            active: !game.active ? position : null
         });
     }
 
@@ -52,7 +53,7 @@ const GameSquare = ({active, subactive, position, isImmuatable, value}) => {
         if prop value changes, this is a new GameSquare
     */
 
-    // listen for changes in active index (only one active GameSquare at a time)
+    // listen for active value changes
     // useEffect(() => {
     //     if (game.active !== position) {
     //         setIs_Active(undefined);

@@ -12,6 +12,7 @@ import { useGame } from "../context/game";
 const Info = () => {
     // get current game state & dispatch function
     const [game, dispatchGame] = useGame();
+   
 
     //set game type
     function handleTypeChange(event) {
@@ -20,6 +21,8 @@ const Info = () => {
             game_type: parseInt(event.target.value)
         });
     }
+
+    
     
     return (
         <>
@@ -34,7 +37,7 @@ const Info = () => {
                 value={game.type}
                 onChange={handleTypeChange}/>
             </div>
-            <Game />
+            <Game game_board={game.game_squares}/>
             <Controls />
         </>
     );
