@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useGame } from "../context/game";
 
 /*
@@ -16,49 +15,10 @@ const GameSquare = ({active, subactive, position, value}) => {
         // tell game which square is active or not 
         dispatchGame({
             type: 'SET_ACTIVE_SQUARE',
-            active: !game.active ? position : null
+            active: game.active == null ? position : null
         });
     }
 
-
-    //listens for active value changes
-    // useEffect(() => {
-    //     /*
-    //         set display value only if 
-    //         1) game.active_value is set
-    //         2) GameSquare is active
-    //         3) GameSquare is a clue
-    //     */
-    //     if (game.active_value && is_active && isMutable ) {
-    //         setDisplay_value(game.active_value);
-    //         // if user input is incorrect show error
-    //         if (game.active_value !== value) {
-    //             setError('wrong')
-    //         } else {
-    //             setError(undefined);
-    //         }
-    //     } else {
-    //         dispatchGame({
-    //             type: 'SET_ACTIVE_VALUE',
-    //             value: undefined
-    //         });
-    //     }
-
-    //     // if value changes and gamesquare is immutable then change display value
-    //     if (value !== display_value && isMutable === false) {
-    //         setDisplay_value(value);
-    //     }
-    // }, [game.active_value, is_active, isMutable, dispatchGame, value, display_value]);
-    /* listen for (prop) value changes
-        if prop value changes, this is a new GameSquare
-    */
-
-    // listen for active value changes
-    // useEffect(() => {
-    //     if (game.active !== position) {
-    //         setIs_Active(undefined);
-    //     }
-    // },[game.active, position])
 
     return (
         <button 
