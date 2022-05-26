@@ -9,7 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 */
 const Game = ({game_board}) => {
     //retrieve game context
-    const [game] = useGame();
+    const [game, dispatchGame] = useGame();
 
     //get gamesquareobjects
     const getGameSquareObjectsfromValues = useCallback((activeIndex, game_board, subactive_arr, immuatables_arr) => {
@@ -50,6 +50,35 @@ const Game = ({game_board}) => {
             setGState(getGameSquareObjectsfromValues(game.active, game_board, game.subactive, game.immutable_squares));
         }
     }, [active, game.active, getGameSquareObjectsfromValues, game_board, game.subactive, game.immutable_squares]);
+
+    //listen for set active value changes
+    useEffect(() => {
+        //handle user input for currently active value
+        /*
+            only update GameSquare display value when :
+            1) active index is not null
+            2) game.active_value is set (meaning user has clicked a control button)
+            3) active Gamesquare is mutable
+            4) user input is correct value (compared to game_board equivalent)
+            4.1) if user input wrong, then indicate wrong value
+        */
+        if (active !== null && game.active_value && !game.immutable_squares.includes(active)) {
+            console.log(`display ${game.active_value} here`)
+            if (game.active_value === game_board[active]) {
+                // make active gameSquare immutable (this also shows the correct value)
+                dispatchGame({
+                    type: 'ADD_IMMUTABLE_INDEX',
+                    new_index: active
+                });
+                setGState(getGameSquareObjectsfromValues(active, game_board, game.subactive, game.immutable_squares));
+            }
+        } else {
+            dispatchGame({
+                type: 'SET_ACTIVE_VALUE',
+                value: null
+            });
+        }
+    },[active, game.active_value, dispatchGame, game.immutable_squares, game_board,  getGameSquareObjectsfromValues, game.subactive])
     // render
     return (
         <div className="game"
