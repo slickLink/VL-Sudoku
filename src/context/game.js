@@ -37,7 +37,7 @@ const gameReducer = (state, action) => {
             }
         case 'ADD_IMMUTABLE_INDEX':
             const immu_squares = state.immutable_squares;
-            immu_squares.push(action.new_index);
+            immu_squares.add(action.new_index);
             return {...state,
                 immutable_squares: immu_squares
             }

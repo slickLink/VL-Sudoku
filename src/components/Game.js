@@ -1,5 +1,6 @@
 import GameSquare from "./GameSquare";
 import { useGame } from "../context/game";
+import usePrevious from "../hooks/customHooks";
 import { useCallback, useEffect, useState } from "react";
 
 /*
@@ -17,7 +18,7 @@ const Game = ({game_board}) => {
         let game_state = game_board.map((value, index) => {
             const is_active = index === activeIndex ? 'active': null;
             const is_subactive = subactive_arr.includes(index) ? 'subactive': null;
-            const immutable = immuatables_arr.includes(index) ? true : false;
+            const immutable = immuatables_arr.has(index) ? true : false;
             const display_value = immutable ? value : null;
             return (
                 <GameSquare
@@ -33,6 +34,7 @@ const Game = ({game_board}) => {
     //set internal state
     const [g_state, setGState] = useState(getGameSquareObjectsfromValues(game.active, game_board, game.subactive, game.immutable_squares));
     const [active, setActive] = useState(game.active);
+    const prev_immutable_squares = usePrevious(game.immutable_squares);
 
     //listen for game_board changes
     useEffect(() => {
@@ -62,15 +64,14 @@ const Game = ({game_board}) => {
             4) user input is correct value (compared to game_board equivalent)
             4.1) if user input wrong, then indicate wrong value
         */
-        if (active !== null && game.active_value && !game.immutable_squares.includes(active)) {
+        if (active !== null && game.active_value && !game.immutable_squares.has(active)) {
             console.log(`display ${game.active_value} here`)
             if (game.active_value === game_board[active]) {
-                // make active gameSquare immutable (this also shows the correct value)
+                // tell Game to add active gameSquare to immutable arr
                 dispatchGame({
                     type: 'ADD_IMMUTABLE_INDEX',
                     new_index: active
                 });
-                setGState(getGameSquareObjectsfromValues(active, game_board, game.subactive, game.immutable_squares));
             }
         } else {
             dispatchGame({

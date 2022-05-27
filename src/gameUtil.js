@@ -165,6 +165,7 @@ const getRandomSequence = (game_type) => {
     // return random_array;
 }
 
+// returns a set not array
 const getRandomSequenceClues = (num_clues, total_indexes) => {
     // create ordinal array starting with 0
     let ordinal_array = [];
@@ -173,11 +174,11 @@ const getRandomSequenceClues = (num_clues, total_indexes) => {
     }
 
     // create random indexes of clues from ordinal array
-    let clues = [];
+    let clues = new Set();
     for(let i = 0; i < num_clues; i++) {
         const random_index = Math.floor(Math.random() * ordinal_array.length);
         let random_clue = ordinal_array[random_index];
-        clues.push(random_clue);
+        clues.add(random_clue);
         // remove pushed clue from ordinal array
         ordinal_array.splice(random_index, 1);
     }
