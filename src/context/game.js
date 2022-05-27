@@ -35,6 +35,12 @@ const gameReducer = (state, action) => {
             return {...state,
                 active_value: action.value
             }
+        case 'ADD_IMMUTABLE_INDEX':
+            const immu_squares = state.immutable_squares;
+            immu_squares.push(action.new_index);
+            return {...state,
+                immutable_squares: immu_squares
+            }
         default:
             throw new Error(`Unhandled action type: ${action.type}`);
     }
