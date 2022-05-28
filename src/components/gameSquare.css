@@ -1,0 +1,19 @@
+.gameSquare {
+    height: 3.2rem;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: 0;
+    outline: 1px inset rgb(196, 196, 196);
+  }
+  
+  .wrong {
+    border-color: red;
+  }
+  
+  .active {
+    background-color:rgb(145, 196, 254)
+  }
+  
+  .subactive {
+    background-color:rgb(122, 119, 119)
+  }

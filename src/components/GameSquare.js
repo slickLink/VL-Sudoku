@@ -1,4 +1,7 @@
+//context imports
 import { useGame } from "../context/game";
+//css imports
+import './gameSquare.css';
 
 /*
   GameSquare: is a resizable container that holds a single square on the game board

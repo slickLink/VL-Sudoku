@@ -1,6 +1,11 @@
+// components imports
 import GameSquare from "./GameSquare";
+// context imports 
 import { useGame } from "../context/game";
+// react imports
 import { useCallback, useEffect, useState } from "react";
+// css imports
+import './game.css';
 
 /*
   Game: is a resizable container that holds the game board

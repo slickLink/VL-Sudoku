@@ -1,0 +1,8 @@
+.controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    justify-content: space-evenly;
+    margin: 1rem 0;
+  }

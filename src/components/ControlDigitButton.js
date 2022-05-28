@@ -1,4 +1,7 @@
+//context imports
 import { useGame } from "../context/game"
+//css imports
+import './controlDigitButton.css';
 /*
   Controls: renders a button control for user given a value
 */

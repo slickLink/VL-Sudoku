@@ -1,8 +1,10 @@
 // components imports
 import Game from './Game';
 import Controls from "./Controls";
-// contenxt imports 
+// context imports 
 import { useGame } from "../context/game";
+// css imports
+import './info.css';
 
 /*
   Info: gives the user the ability to change the 
@@ -12,7 +14,6 @@ import { useGame } from "../context/game";
 const Info = () => {
     // get current game state & dispatch function
     const [game, dispatchGame] = useGame();
-   
 
     //set game type
     function handleTypeChange(event) {
@@ -22,8 +23,6 @@ const Info = () => {
         });
     }
 
-    
-    
     return (
         <>
             <div className='info'>

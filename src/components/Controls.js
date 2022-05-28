@@ -1,5 +1,9 @@
+// components imports
 import ControlDigitButton from "./ControlDigitButton";
+//context imports
 import { useGame } from "../context/game";
+//css imports 
+import './controls.css';
 
 /*
   Controls: is a container that holds the user inputs, these change

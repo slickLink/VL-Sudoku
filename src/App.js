@@ -1,8 +1,11 @@
-
-import './App.css';
+// component imports
 import Info from './components/Info';
-import React from 'react';
+//context imports
 import { useGame } from './context/game';
+// react imports
+import React from 'react';
+//css imports
+import './App.css';
 
 /*
   App: is a resizable container that holds the entire app
