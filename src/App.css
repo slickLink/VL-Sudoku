@@ -1,13 +1,14 @@
 .app {
+  display: inline-block;
   background-color: white;
-  width: 29rem;
-  height: 100%;
-  margin-left: 25%;
+  border-radius: 0.5rem;
+  /* height: 100%; */
 }
 
 .info {
   background-color: white;
   padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .info label {
@@ -32,7 +33,7 @@
 }
 
 .wrong {
-  color: red;
+  border-color: red;
 }
 
 .active {
@@ -55,4 +56,13 @@
 .controldigitButton {
   width: 2.5rem;
   height: 2.5rem;
+  font-size: 1.5rem
+}
+
+.controldigitButton:hover {
+  background-color: rgb(145, 196, 254);
+}
+
+.controldigitButton:active {
+  opacity: 0.7;
 }

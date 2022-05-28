@@ -1,0 +1,35 @@
+.FAQ-container{
+    margin: 0;
+    padding: 0;
+    width: 37rem;
+    display: inline-block;
+    /* background-color: white; */
+}
+
+.title {
+    background-color:rgb(0, 117, 255);
+    color: white;
+    margin: 0;
+    padding: 0.5rem;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 300;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+}
+
+.faq-article {
+    margin-top: 1rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    padding: 0.25rem 1rem;
+}
+
+.subtitle {
+    margin: 0.25rem 0rem;
+}
+
+.paragraph {
+    margin: 0;
+    margin-bottom: 1rem;
+}
