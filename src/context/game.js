@@ -15,16 +15,22 @@ gameContext.displayName = 'GameContext';
 const gameReducer = (state, action) => {
     switch (action.type) {
         case 'SET_GAME_TYPE':
+            const type_array = getRandomSequence(action.game_type);
+            const game_square_indexes = generateGame(action.game_type).flat();
+            const game_square_values = game_square_indexes.map((value) => type_array[value - 1]);
+            const immutable_squares = getRandomSequenceClues(Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, action.game_type * action.game_type);
+
             return {...state,
                 type: action.game_type,
-                type_array: getRandomSequence(action.game_type),
+                type_array: type_array,
                 width: MIN_TYPE * (action.game_type), // calculates css attribute
                 margin: MAX_TYPE / (action.game_type), // calculates css attribute
                 active: undefined,
+                active_value: undefined,
                 subactive: [],
                 num_clues: Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, // calculates num of mutable squares
-                immutable_squares: getRandomSequenceClues(Math.ceil((action.game_type * action.game_type) / MIN_TYPE) + MIN_TYPE, action.game_type * action.game_type),
-                game_squares: generateGame(action.game_type).flat()
+                immutable_squares: immutable_squares ,
+                game_squares: game_square_values
             }
         case 'SET_ACTIVE_SQUARE':
             return {...state,
