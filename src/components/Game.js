@@ -48,6 +48,13 @@ const Game = ({game_board}) => {
         //handle change in game type
         if (g_state.length !== game_board.length){
             setGState(getGameSquareObjectsfromValues(active, game_board, game.subactive, game.immutable_squares, status));
+            // reset all state
+            let new_status = new Array(game_board.length);
+            for(let i = 0; i < game_board.length; i++){
+                new_status[i] = '';
+            }
+            setStatus(new_status);
+            setActive(undefined);
         }
     }, [g_state, game_board, getGameSquareObjectsfromValues, active, game.subactive, game.immutable_squares, status]);
 
@@ -72,6 +79,7 @@ const Game = ({game_board}) => {
             4.1) if user input wrong, then indicate wrong value
         */
         let current_status = status;
+        let current_immutables = game.immutable_squares;
         if (active !== null && game.active_value && !game.immutable_squares.has(active)) {
             // console.log(`display ${game.active_value} here`)
             if (game.active_value === game_board[active]) {
@@ -81,17 +89,24 @@ const Game = ({game_board}) => {
                     new_index: active
                 });
                 // allows display value to show on active Gamesquare
-                let current_immutables = game.immutable_squares;
                 current_immutables.add(active);
-                setGState(getGameSquareObjectsfromValues(game.active, game_board, game.subactive, current_immutables, status));
                 // set "correct" status
                 current_status[active] = 'correct';
             } else {
                 //set "wrong" status
                 current_status[active] = 'wrong';
             }
+            setGState(getGameSquareObjectsfromValues(game.active, game_board, game.subactive, current_immutables, status));
             setStatus(current_status);
         } else {
+            // if there is no active value wipe status state to default ''
+            if (active == null) {
+                for(let i = 0; i < game_board.length; i++) {
+                    current_status[i] = '';
+                }
+                setGState(getGameSquareObjectsfromValues(game.active, game_board, game.subactive, current_immutables, current_status));
+                setStatus(current_status);
+            }
             dispatchGame({
                 type: 'SET_ACTIVE_VALUE',
                 value: null
