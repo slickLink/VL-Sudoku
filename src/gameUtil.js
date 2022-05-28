@@ -165,7 +165,9 @@ const getRandomSequence = (game_type) => {
     return random_array;
 }
 
-// returns a set not array
+/*
+    getRandomSequenceClues: function returns a Set of random indexes that correspond to immutable values
+*/
 const getRandomSequenceClues = (num_clues, total_indexes) => {
     // create ordinal array starting with 0
     let ordinal_array = [];
