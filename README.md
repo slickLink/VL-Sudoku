@@ -1,70 +1,111 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<h3 align="center">VL Sudoku</h3>
 
-## Available Scripts
+  <p align="center">
+    Variable Latin Sudoku is a Latin square based game, the game allows you to choose what type of Latin square you would prefer to enjoy.
+    <br />
+    <a href="https://github.com/slickLink/VL-Sudoku"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://v-sudoku.netlify.app/">View Live Demo</a>
+    ·
+    <a href="hhttps://github.com/slickLink/VL-Sudoku/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/slickLink/VL-Sudoku/issues">Request Feature</a>
+  </p>
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![screenshot](./v_sudoku_9x9.png)
+Created this project after learning sudoku is a latin square, I wanted to create a variable version accessible over the internet when i'm bored and dont feel like playing sudoku at the moment. Hence VL SUDOKU was born.
 
-### `npm test`
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Built With
 
-### `npm run build`
+* [React.js](https://reactjs.org/)
+* [HTML](https://html.com/)
+* [CSS](https://www.w3.org/Style/CSS/Overview.en.html)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<!-- GETTING STARTED -->
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To get a local copy up and running follow these simple example steps.
 
-### `npm run eject`
+### Prerequisites
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* npm
+  ```sh
+  npm install npm@latest -g
+  ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Installation
+1. Clone the repo
+   ```sh
+   git clone https://github.com/slickLink/VL-Sudoku.git
+   ```
+3. Install NPM packages
+   ```sh
+   npm install
+   ```
+4. Run locally
+    ```sh
+    npm start
+    ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- LICENSE -->
+## License
 
-## Learn More
+Distributed under the GNU GENERAL PUBLIC LICENSE. See `LICENSE.txt` for more information.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- CONTACT -->
+## Contact
 
-### Code Splitting
+Lincoln Dube  - lincoln.dube@outlook.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Project Link: [https://github.com/slickLink/VL-Sudoku](https://github.com/slickLink/VL-Sudoku)
 
-### Analyzing the Bundle Size
+<p align="right">(<a href="#top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-### Making a Progressive Web App
+* [JAMES V. BRADLEY](https://www.jstor.org/stable/2281872)
+* [OTHNEIL DREW](https://github.com/othneildrew/Best-README-Template)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#top">back to top</a>)</p>
