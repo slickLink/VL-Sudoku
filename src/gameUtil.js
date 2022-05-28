@@ -188,4 +188,4 @@ const getRandomSequenceClues = (num_clues, total_indexes) => {
     return clues;
 }
 
-export  {getSubactive, generateGame, getRandomSequence, getRandomSequenceClues};
+export {getSubactive, generateGame, getRandomSequence, getRandomSequenceClues};
